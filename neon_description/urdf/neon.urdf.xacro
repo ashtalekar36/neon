@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<robot name="neon" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Include inertial macros -->
+  <xacro:include filename="$(find neon_description)/urdf/inertial.xacro" />
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <xacro:base_link_inertial/>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find neon_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find neon_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Left Wheel -->
+  <link name="left_wheel_link_1">
+    <xacro:left_wheel_link_1_inertial/>
+    <visual>
+      <origin xyz="0.094132 0.05 -0.061" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find neon_description)/meshes/left_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.094132 0.05 -0.061" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find neon_description)/meshes/left_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Right Wheel -->
+  <link name="right_wheel_link_1">
+    <xacro:right_wheel_link_1_inertial/>
+    <visual>
+      <origin xyz="-0.095868 0.05 -0.061" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find neon_description)/meshes/right_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.095868 0.05 -0.061" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find neon_description)/meshes/right_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Lidar Link -->
+  <link name="lidar_link_1">
+    <xacro:lidar_link_1_inertial/>
+    <visual>
+      <origin xyz="0.0 -0.08 -0.116" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find neon_description)/meshes/lidar_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.0 -0.08 -0.116" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find neon_description)/meshes/lidar_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joints -->
+  <joint name="Revolute_4" type="continuous">
+    <origin xyz="-0.094132 -0.05 0.061" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="left_wheel_link_1"/>
+    <axis xyz="1.0 0.0 0.0"/>
+    <limit effort="1.0" velocity="10.0"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <joint name="Revolute_5" type="continuous">
+    <origin xyz="0.095868 -0.05 0.061" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="right_wheel_link_1"/>
+    <axis xyz="1.0 0.0 0.0"/>
+    <limit effort="1.0" velocity="10.0"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <joint name="Rigid_6" type="fixed">
+    <origin xyz="0.0 0.08 0.116" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="lidar_link_1"/>
+  </joint>
+
+  <!-- Lidar Sensor Plugin from lidar.xacro -->
+  <xacro:lidar_sensor_plugin lidar_link="lidar_link_1" />
+
+
+
+</robot>

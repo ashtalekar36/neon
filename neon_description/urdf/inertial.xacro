@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+  <!-- Base Link Inertial -->
+  <xacro:macro name="base_link_inertial" params="">
+    <inertial>
+      <origin xyz="3.428493980213885e-05 0.00027285771811239837 0.07072496870871087" rpy="0 0 0"/>
+      <mass value="26.704395059494114"/>
+      <inertia ixx="0.153521" iyy="0.077857" izz="0.202277" ixy="4.6e-05" iyz="0.000429" ixz="9e-06"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- Left Wheel Inertial -->
+  <xacro:macro name="left_wheel_link_1_inertial" params="">
+    <inertial>
+      <origin xyz="-0.014999578661085491 0 0" rpy="0 0 0"/>
+      <mass value="2.663442251713426"/>
+      <inertia ixx="0.004794" iyy="0.002597" izz="0.002597" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- Right Wheel Inertial -->
+  <xacro:macro name="right_wheel_link_1_inertial" params="">
+    <inertial>
+      <origin xyz="0.015000421338914507 0 0" rpy="0 0 0"/>
+      <mass value="2.663442251713426"/>
+      <inertia ixx="0.004794" iyy="0.002597" izz="0.002597" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- Lidar Link Inertial -->
+  <xacro:macro name="lidar_link_1_inertial" params="">
+    <inertial>
+      <origin xyz="-8.94e-07 -0.0004776 0.0099648" rpy="0 0 0"/>
+      <mass value="0.19058022841643052"/>
+      <inertia ixx="2.5e-05" iyy="2.6e-05" izz="3.7e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+  </xacro:macro>
+
+</robot>
